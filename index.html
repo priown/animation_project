@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tri-Scene Interactive 3D Animations</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Load Three.js from primary CDN with secondary & tertiary fallbacks -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\/script>');
+    }
+  </script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://unpkg.com/three@0.128.0/build/three.min.js"><\/script>');
+    }
+  </script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header / Navigation Bar -->
+    <header class="top-nav">
+      <div class="user-profile">
+        <div class="user-avatar">AP</div>
+        <div class="user-details">
+          <span class="user-name">Aluko Promise Olajuwon</span>
+          <span class="user-matric">CPE/2022/1100</span>
+        </div>
+      </div>
+
+      <!-- Viewport Tab Selection Controls -->
+      <div class="view-modes" id="view-mode-selector">
+        <span class="mode-label">Select Project:</span>
+        <button class="mode-btn active" data-mode="tab-1" title="Focus Cat & Mouse">
+          <span class="icon">🐱</span> Cat & Mouse
+        </button>
+        <button class="mode-btn" data-mode="tab-2" title="Focus Rotating Car">
+          <span class="icon">🏎️</span> 3D Car
+        </button>
+        <button class="mode-btn" data-mode="tab-3" title="Focus Dramatic Conversation">
+          <span class="icon">🎭</span> Dramatic Monologue
+        </button>
+      </div>
+
+      <!-- Global Actions -->
+      <div class="nav-actions">
+        <button id="audio-toggle" class="nav-btn" title="Toggle Dramatic Atmospheric Sound Effects">
+          <span class="audio-icon">🔇</span> <span class="audio-text">FX Audio: Off</span>
+        </button>
+        <button id="reset-views" class="nav-btn" title="Reset All Cameras">↺ Reset Cameras</button>
+      </div>
+    </header>
+
+    <!-- Main Workspace with Focused Panes -->
+    <main class="panes-container mode-tab-1" id="panes-container">
+
+      <!-- ========================================== -->
+      <!-- PANEL 1: Cat Looking at Mouse Orbiting -->
+      <!-- ========================================== -->
+      <section class="pane" id="pane-1" data-scene="cat">
+        <div class="pane-header">
+          <div class="pane-title">
+            <span class="pane-badge">01</span>
+            <h2>Predator Gaze &bull; Cat &amp; Orbiting Mouse</h2>
+          </div>
+          <div class="pane-tools">
+            <span class="tag">Procedural 3D Head Tracking</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="canvas-cat"></canvas>
+          
+          <!-- On-screen Status HUD -->
+          <div class="hud-overlay" id="cat-hud">
+            <div class="hud-item"><span class="hud-key">Tracking:</span> <span class="hud-val" id="cat-tracking-angle">0°</span></div>
+            <div class="hud-item"><span class="hud-key">State:</span> <span class="hud-val" id="mouse-state-val">Orbiting</span></div>
+          </div>
+        </div>
+
+        <!-- Controls Footer for Scene 1 -->
+        <div class="pane-controls">
+          <div class="control-row">
+            <label>Orbit Speed</label>
+            <input type="range" id="mouse-speed" min="0.2" max="3.5" step="0.1" value="1.2">
+            <span class="val-display" id="mouse-speed-val">1.2x</span>
+          </div>
+          <div class="control-row">
+            <label>Cat Coat Color</label>
+            <div class="color-swatches" id="cat-colors">
+              <span class="color-dot active" data-color="#c86b2a" data-dark="#8a4a18" style="background: linear-gradient(135deg, #e67e22, #c86b2a);" title="Ginger Tabby"></span>
+              <span class="color-dot" data-color="#2c3437" data-dark="#15191b" style="background: linear-gradient(135deg, #374151, #111827);" title="Midnight Panther"></span>
+              <span class="color-dot" data-color="#ffffff" data-dark="#cbd5e1" style="background: linear-gradient(135deg, #ffffff, #e2e8f0);" title="Pure Snow"></span>
+              <span class="color-dot" data-color="#808080" data-dark="#4b5563" style="background: linear-gradient(135deg, #9ca3af, #6b7280);" title="Smoke Grey"></span>
+              <span class="color-dot" data-color="#78350f" data-dark="#451a03" style="background: linear-gradient(135deg, #92400e, #59250b);" title="Siamese Chocolate"></span>
+            </div>
+          </div>
+          <div class="button-bar">
+            <button class="btn-sub" id="mouse-reverse-btn">⇄ Reverse Orbit</button>
+          </div>
+          <div class="helper-hint">💡 Drag canvas to rotate camera. Cat's head, ears, and eyes dynamically track the mouse!</div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- PANEL 2: Car Rotating About The Same Axis -->
+      <!-- ========================================== -->
+      <section class="pane" id="pane-2" data-scene="car">
+        <div class="pane-header">
+          <div class="pane-title">
+            <span class="pane-badge">02</span>
+            <h2>Studio Turntable &bull; Multi-Axis Car</h2>
+          </div>
+          <div class="pane-tools">
+            <span class="tag">Cyber Coupe 3D</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="canvas-car"></canvas>
+
+          <!-- On-screen Status HUD -->
+          <div class="hud-overlay" id="car-hud">
+            <div class="hud-item"><span class="hud-key">Axis:</span> <span class="hud-val" id="car-axis-val">Y-Axis (Yaw)</span></div>
+            <div class="hud-item"><span class="hud-key">RPM:</span> <span class="hud-val" id="car-rpm-val">12.0</span></div>
+          </div>
+        </div>
+
+        <!-- Controls Footer for Scene 2 -->
+        <div class="pane-controls">
+          <div class="control-row">
+            <label>Spin Speed</label>
+            <input type="range" id="car-speed" min="-3" max="3" step="0.2" value="1.0">
+            <span class="val-display" id="car-speed-val">1.0x</span>
+          </div>
+          <div class="control-row">
+            <label>Body Finish</label>
+            <div class="color-swatches" id="car-colors">
+              <span class="color-dot active" data-color="#0ff" style="background: linear-gradient(135deg, #00f2fe, #4facfe);" title="Neon Cyan"></span>
+              <span class="color-dot" data-color="#e02424" style="background: linear-gradient(135deg, #f85032, #e73827);" title="Inferno Red"></span>
+              <span class="color-dot" data-color="#101318" style="background: linear-gradient(135deg, #2b303c, #0a0c10);" title="Obsidian Black"></span>
+              <span class="color-dot" data-color="#ffd700" style="background: linear-gradient(135deg, #ffe066, #f59e0b);" title="Solar Gold"></span>
+              <span class="color-dot" data-color="#9333ea" style="background: linear-gradient(135deg, #a855f7, #6b21a8);" title="Cyber Violet"></span>
+            </div>
+          </div>
+          <div class="helper-hint">💡 Continuous rotation around the same center axis with showroom reflections & floor lights.</div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- PANEL 3: Dramatic Monologue (Handicapped No Leg) -->
+      <!-- ========================================== -->
+      <section class="pane" id="pane-3" data-scene="dialogue">
+        <div class="pane-header">
+          <div class="pane-title">
+            <span class="pane-badge">03</span>
+            <h2>Defiance &bull; The Unbroken Conversation</h2>
+          </div>
+          <div class="pane-tools">
+            <span class="tag">Theatrical Stage &bull; Noir Cinema</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="canvas-dialogue"></canvas>
+
+          <!-- Cinematic Spotlight & Atmospheric Vignette -->
+          <div class="cinematic-vignette"></div>
+
+          <!-- Dramatic Speech Bubble & Monologue HUD -->
+          <div class="dialogue-box-container">
+            <div class="speaker-tag">
+              <span class="pulse-indicator"></span>
+              <span class="speaker-name">COMMANDER VANE</span>
+              <span class="speaker-status">Bilateral Amputee &bull; Chair-Bound</span>
+            </div>
+            <div class="dialogue-text" id="dialogue-speech-text">
+              "They think the ground defines a man..."
+            </div>
+            <div class="dialogue-subtext" id="dialogue-mood-text">
+              [Intense whisper. Hand grips the mechanical wheel rim.]
+            </div>
+          </div>
+
+          <!-- Dramatic Lighting Flare Effect -->
+          <div class="dramatic-flare" id="dramatic-flare"></div>
+        </div>
+
+        <!-- Controls Footer for Scene 3 -->
+        <div class="pane-controls">
+          <div class="dialogue-stepper">
+            <button class="btn-primary" id="dialogue-prev-btn">◀ Previous</button>
+            <button class="btn-primary btn-accent" id="dialogue-next-btn">Next Line ▶</button>
+            <button class="btn-sub active" id="dialogue-autoplay-btn">⏸ Pause Auto-Play</button>
+          </div>
+          <div class="control-row">
+            <label>Camera Shot</label>
+            <div class="segmented-control" id="camera-shot-selector">
+              <button class="seg-btn active" data-shot="hero">Heroic Low</button>
+              <button class="seg-btn" data-shot="close">Intense Close</button>
+              <button class="seg-btn" data-shot="profile">Noir Profile</button>
+              <button class="seg-btn" data-shot="wide">Full Stage</button>
+            </div>
+          </div>
+          <div class="helper-hint">💡 Expressive 3D torso, articulated wheelchair, breathing cadence, and gestural conversation.</div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer Status / Credit -->
+    <footer class="app-footer">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span id="fps-counter">60 FPS</span> | Three.js WebGL &amp; CSS3D Pipeline
+      </div>
+      <div class="footer-tip">
+        <strong>Aluko Promise Olajuwon</strong> &bull; CPE/2022/1100 &bull; Computer Engineering
+      </div>
+    </footer>
+  </div>
+
+  <!-- Application Logic Scripts -->
+  <script src="orbit_controls_inline.js"></script>
+  <script src="audio_fx.js"></script>
+  <script src="scene_cat.js"></script>
+  <script src="scene_car.js"></script>
+  <script src="scene_dialogue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

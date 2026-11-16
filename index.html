@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +19,12 @@
     }
   </script>
 </head>
+
 <body>
   <div class="app-container">
-    <!-- Header / Navigation Bar -->
+    <!-- Header / Navigation  -->
     <header class="top-nav">
       <div class="user-profile">
-        <div class="user-avatar">AP</div>
         <div class="user-details">
           <span class="user-name">Aluko Promise Olajuwon</span>
           <span class="user-matric">CPE/2022/1100</span>
@@ -72,11 +73,13 @@
 
         <div class="canvas-wrapper">
           <canvas id="canvas-cat"></canvas>
-          
+
           <!-- On-screen Status HUD -->
           <div class="hud-overlay" id="cat-hud">
-            <div class="hud-item"><span class="hud-key">Tracking:</span> <span class="hud-val" id="cat-tracking-angle">0°</span></div>
-            <div class="hud-item"><span class="hud-key">State:</span> <span class="hud-val" id="mouse-state-val">Orbiting</span></div>
+            <div class="hud-item"><span class="hud-key">Tracking:</span> <span class="hud-val"
+                id="cat-tracking-angle">0°</span></div>
+            <div class="hud-item"><span class="hud-key">State:</span> <span class="hud-val"
+                id="mouse-state-val">Orbiting</span></div>
           </div>
         </div>
 
@@ -90,17 +93,23 @@
           <div class="control-row">
             <label>Cat Coat Color</label>
             <div class="color-swatches" id="cat-colors">
-              <span class="color-dot active" data-color="#c86b2a" data-dark="#8a4a18" style="background: linear-gradient(135deg, #e67e22, #c86b2a);" title="Ginger Tabby"></span>
-              <span class="color-dot" data-color="#2c3437" data-dark="#15191b" style="background: linear-gradient(135deg, #374151, #111827);" title="Midnight Panther"></span>
-              <span class="color-dot" data-color="#ffffff" data-dark="#cbd5e1" style="background: linear-gradient(135deg, #ffffff, #e2e8f0);" title="Pure Snow"></span>
-              <span class="color-dot" data-color="#808080" data-dark="#4b5563" style="background: linear-gradient(135deg, #9ca3af, #6b7280);" title="Smoke Grey"></span>
-              <span class="color-dot" data-color="#78350f" data-dark="#451a03" style="background: linear-gradient(135deg, #92400e, #59250b);" title="Siamese Chocolate"></span>
+              <span class="color-dot active" data-color="#c86b2a" data-dark="#8a4a18"
+                style="background: linear-gradient(135deg, #e67e22, #c86b2a);" title="Ginger Tabby"></span>
+              <span class="color-dot" data-color="#2c3437" data-dark="#15191b"
+                style="background: linear-gradient(135deg, #374151, #111827);" title="Midnight Panther"></span>
+              <span class="color-dot" data-color="#ffffff" data-dark="#cbd5e1"
+                style="background: linear-gradient(135deg, #ffffff, #e2e8f0);" title="Pure Snow"></span>
+              <span class="color-dot" data-color="#808080" data-dark="#4b5563"
+                style="background: linear-gradient(135deg, #9ca3af, #6b7280);" title="Smoke Grey"></span>
+              <span class="color-dot" data-color="#78350f" data-dark="#451a03"
+                style="background: linear-gradient(135deg, #92400e, #59250b);" title="Siamese Chocolate"></span>
             </div>
           </div>
           <div class="button-bar">
             <button class="btn-sub" id="mouse-reverse-btn">⇄ Reverse Orbit</button>
           </div>
-          <div class="helper-hint">💡 Drag canvas to rotate camera. Cat's head, ears, and eyes dynamically track the mouse!</div>
+          <div class="helper-hint">💡 Drag canvas to rotate camera. Cat's head, ears, and eyes dynamically track the
+            mouse!</div>
         </div>
       </section>
 
@@ -123,8 +132,10 @@
 
           <!-- On-screen Status HUD -->
           <div class="hud-overlay" id="car-hud">
-            <div class="hud-item"><span class="hud-key">Axis:</span> <span class="hud-val" id="car-axis-val">Y-Axis (Yaw)</span></div>
-            <div class="hud-item"><span class="hud-key">RPM:</span> <span class="hud-val" id="car-rpm-val">12.0</span></div>
+            <div class="hud-item"><span class="hud-key">Axis:</span> <span class="hud-val" id="car-axis-val">Y-Axis
+                (Yaw)</span></div>
+            <div class="hud-item"><span class="hud-key">RPM:</span> <span class="hud-val" id="car-rpm-val">12.0</span>
+            </div>
           </div>
         </div>
 
@@ -138,14 +149,20 @@
           <div class="control-row">
             <label>Body Finish</label>
             <div class="color-swatches" id="car-colors">
-              <span class="color-dot active" data-color="#0ff" style="background: linear-gradient(135deg, #00f2fe, #4facfe);" title="Neon Cyan"></span>
-              <span class="color-dot" data-color="#e02424" style="background: linear-gradient(135deg, #f85032, #e73827);" title="Inferno Red"></span>
-              <span class="color-dot" data-color="#101318" style="background: linear-gradient(135deg, #2b303c, #0a0c10);" title="Obsidian Black"></span>
-              <span class="color-dot" data-color="#ffd700" style="background: linear-gradient(135deg, #ffe066, #f59e0b);" title="Solar Gold"></span>
-              <span class="color-dot" data-color="#9333ea" style="background: linear-gradient(135deg, #a855f7, #6b21a8);" title="Cyber Violet"></span>
+              <span class="color-dot active" data-color="#0ff"
+                style="background: linear-gradient(135deg, #00f2fe, #4facfe);" title="Neon Cyan"></span>
+              <span class="color-dot" data-color="#e02424"
+                style="background: linear-gradient(135deg, #f85032, #e73827);" title="Inferno Red"></span>
+              <span class="color-dot" data-color="#101318"
+                style="background: linear-gradient(135deg, #2b303c, #0a0c10);" title="Obsidian Black"></span>
+              <span class="color-dot" data-color="#ffd700"
+                style="background: linear-gradient(135deg, #ffe066, #f59e0b);" title="Solar Gold"></span>
+              <span class="color-dot" data-color="#9333ea"
+                style="background: linear-gradient(135deg, #a855f7, #6b21a8);" title="Cyber Violet"></span>
             </div>
           </div>
-          <div class="helper-hint">💡 Continuous rotation around the same center axis with showroom reflections & floor lights.</div>
+          <div class="helper-hint">💡 Continuous rotation around the same center axis with showroom reflections & floor
+            lights.</div>
         </div>
       </section>
 
@@ -204,7 +221,8 @@
               <button class="seg-btn" data-shot="wide">Full Stage</button>
             </div>
           </div>
-          <div class="helper-hint">💡 Expressive 3D torso, articulated wheelchair, breathing cadence, and gestural conversation.</div>
+          <div class="helper-hint">💡 Expressive 3D torso, articulated wheelchair, breathing cadence, and gestural
+            conversation.</div>
         </div>
       </section>
 
@@ -230,4 +248,5 @@
   <script src="scene_dialogue.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
